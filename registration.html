@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+
+<h1> Registration Form </h1>
+
+<div>
+
+    <form action="registration.php" method="post">
+        <div>
+
+            <label for="fname">* First Name: </label>
+            <input type="text" name="fname" id="fname"> <span class="error"> <?php echo $firstNameError; ?> </span><br><br>
+
+            <label for="lname">* Last Name: </label>
+            <input type="text" name="lname" id="lname"> <span class="error"> <?php echo $lastNameError; ?> </span><br><br>
+
+            <label for="birthday">Birthday:</label>
+            <input type="date" name="birthday" id="birthday"> *<span class="error"> <?php echo $birthdayError; ?> </span> <br><br>
+
+            <label for="email">Email:</label>
+            <input type="email" name="email" id="email"> *<span class="error"> <?php echo $emailError;?></span><br><br>
+
+            <label for="password">* Password:</label>
+            <input type="password" name="password" id="password"> <span class="error"> <?php echo $emailError;?></span><br><br>
+        </div>
+
+        <p><span class="error"> * required field</span></p>
+        <input type="submit" value="Login">
+
+    </form>
+</div>
+</body>
+</html>
