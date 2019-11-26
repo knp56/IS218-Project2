@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login Form</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<main>
+
+    <h1>Login Form</h1>
+    <form action="display.php" method="post">
+<br>
+        <div id="data">
+            <label for="email">* Email Address: </label>
+            <input type="email" name="email" id="email"><span class="error"><?php echo $emailError;?></span><br>
+<br>
+            <label for="password">* Password: </label>
+            <input type="password" name="password" id="password"><span class="error"><?php echo $passwordError;?></span><br>
+            <p>
+                <span class="error"> * Required Field</span>
+            </p>
+<br>
+
+        <input type="submit" value="Login">
+
+
+
+        <p>
+            Click here to Register now
+        </p>
+        <p>
+            <a href="registration.html"> Register</a>
+        </p>
+
+    </div>
+    </form>
+
+
+</main>
+</body>
+</html>
