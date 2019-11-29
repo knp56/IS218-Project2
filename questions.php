@@ -1,11 +1,15 @@
 <?php
 
 require("pdo.php");
+require("task.php");
 
-$userID=filter_input(INPUT_GET,'userID');
+
 $questionName=filter_input(INPUT_POST,'questionName');
 $questionBody=filter_input(INPUT_POST,'questionBody');
 $questionSkills=filter_input(INPUT_POST,'questionSkills');
+
+session_start();
+$userid=$_SESSION['userid'];
 $doubleCheckSkills=explode(',',$questionSkills);
 
 
@@ -17,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"]=="POST")
         $NameError = "Must provide a Question Name.";
         $Validate=false;
     }
-    elseif(strlen($questionName) <3)
+    elseif(strlen($questionName) < 3)
     {
         $NameError= "Question Name must be 3 characters or more.";
         $Validate=false;
@@ -37,7 +41,7 @@ if ($_SERVER["REQUEST_METHOD"]=="POST")
         $skillError = "Must provide skills.";
         $Validate=false;
     }
-    elseif(count($doubleCheckSkills)<2)
+    elseif(count($doubleCheckSkills) < 2)
     {
         $skillError= "Must provide 2 or more skills.";
         $Validate=false;
@@ -47,13 +51,13 @@ if ($_SERVER["REQUEST_METHOD"]=="POST")
     if($Validate==true)
     {
         $query = 'INSERT INTO questions
-                    (ownerID,title,body,skills)
+                    (ownerid,title,body,skills)
                 VALUES
-                (:ownerID,:title,:body,:skills)';
+                (:ownerid,:title,:body,:skills)';
 
         $statement = $db->prepare($query);
 
-        $statement->bindValue('ownerID',$userID);
+        $statement->bindValue('ownerid',$userid);
         $statement->bindValue('questionName',$questionName);
         $statement->bindValue('questionBody',$questionBody);
         $statement->bindValue('questionSkills',$questionSkills);
