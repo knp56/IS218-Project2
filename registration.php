@@ -2,11 +2,11 @@
 
 require('pdo.php');
 
-$fname= filter_input(INPUT_POST, "fname");
-$lname= filter_input(INPUT_POST, "lname");
-$birthday=filter_input(INPUT_POST, "birthday");
-$email= filter_input(INPUT_POST, "email");
-$password= filter_input(INPUT_POST, "password");
+$fname= filter_input(INPUT_POST, 'fname');
+$lname= filter_input(INPUT_POST, 'lname');
+$birthday=filter_input(INPUT_POST, 'birthday');
+$email= filter_input(INPUT_POST, 'email');
+$password= filter_input(INPUT_POST, 'new password');
 $doubleCheck=strpos($email,'a');
 
 if ($_SERVER["REQUEST_METHOD"]=="POST")
@@ -47,7 +47,7 @@ if ($_SERVER["REQUEST_METHOD"]=="POST")
         $query = 'INSERT INTO accounts
                      (email, fname, lname, birthday, password)
                 VALUES 
-                    (:email, :fname, :lname, :birthday, :birthday, :password)';
+                    (:email, :fname, :lname, :birthday, :password)';
 
 
         $statement = $db->prepare($query);
@@ -61,6 +61,7 @@ if ($_SERVER["REQUEST_METHOD"]=="POST")
         $statement->execute();
         $statement->closeCursor();
 
+        header('Location: ../login.html');
 
     }
 
@@ -91,8 +92,10 @@ if ($_SERVER["REQUEST_METHOD"]=="POST")
     <span <span class="error"> <?php echo $emailError;?></span>
 </div>
 <div>
-    Password: <?php echo $password; ?>
+    Password: <?php if (!$password) echo $password; ?>
     <span <span class="error"> <?php echo $passwordError;?></span>
 </div>
 </body>
 </html>
+
+
